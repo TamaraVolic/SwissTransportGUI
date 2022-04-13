@@ -1,5 +1,6 @@
 ﻿namespace SwissTransport
 {
+    using System;
     using FluentAssertions;
     using SwissTransport.Core;
     using SwissTransport.Models;

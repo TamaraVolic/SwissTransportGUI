@@ -30,10 +30,10 @@
                 throw new ArgumentNullException(nameof(station));
             }
 
-            if (string.IsNullOrEmpty(id))
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
+            //if (string.IsNullOrEmpty(id))
+            //{
+            //    throw new ArgumentNullException(nameof(id));
+            //}
 
             var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
             return this.GetObject<StationBoardRoot>(uri);

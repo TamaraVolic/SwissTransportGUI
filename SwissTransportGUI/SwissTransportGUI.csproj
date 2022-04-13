@@ -31,4 +31,9 @@
     <Folder Include="Controller\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EO.WebBrowser" Version="22.0.83" />
+    <PackageReference Include="GMap.NET.WinForms" Version="2.0.3" />
+  </ItemGroup>
+
 </Project>
