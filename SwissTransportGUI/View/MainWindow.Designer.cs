@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ListBoxConnections = new System.Windows.Forms.ListBox();
             this.ButtonSwitch = new System.Windows.Forms.Button();
             this.ComboBoxTo = new System.Windows.Forms.ComboBox();
             this.ComboBoxFrom = new System.Windows.Forms.ComboBox();
@@ -42,41 +41,33 @@
             this.LabelDate = new System.Windows.Forms.Label();
             this.LabelTo = new System.Windows.Forms.Label();
             this.LabelFrom = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.TabPageNearby = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
-            this.TabPageNearby = new System.Windows.Forms.TabPage();
-            this.ButtonSearchNearby = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.TabControl = new System.Windows.Forms.TabControl();
             this.TabPageTimetable = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ComboBoxTimetable = new System.Windows.Forms.ComboBox();
+            this.DataGridTimetable = new System.Windows.Forms.DataGridView();
+            this.ButtonSearchTimetable = new System.Windows.Forms.Button();
+            this.TabControl = new System.Windows.Forms.TabControl();
+            this.TabPageConnections = new System.Windows.Forms.TabPage();
+            this.ComboBox2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridConnections)).BeginInit();
-            this.tabPage1.SuspendLayout();
             this.TabPageNearby.SuspendLayout();
-            this.TabControl.SuspendLayout();
             this.TabPageTimetable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridTimetable)).BeginInit();
+            this.TabControl.SuspendLayout();
+            this.TabPageConnections.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ListBoxConnections
-            // 
-            this.ListBoxConnections.FormattingEnabled = true;
-            this.ListBoxConnections.ItemHeight = 30;
-            this.ListBoxConnections.Location = new System.Drawing.Point(33, 601);
-            this.ListBoxConnections.Name = "ListBoxConnections";
-            this.ListBoxConnections.Size = new System.Drawing.Size(745, 244);
-            this.ListBoxConnections.TabIndex = 13;
             // 
             // ButtonSwitch
             // 
             this.ButtonSwitch.Location = new System.Drawing.Point(279, 63);
             this.ButtonSwitch.Name = "ButtonSwitch";
             this.ButtonSwitch.Size = new System.Drawing.Size(101, 38);
-            this.ButtonSwitch.TabIndex = 12;
+            this.ButtonSwitch.TabIndex = 2;
             this.ButtonSwitch.Text = "Switch";
             this.ButtonSwitch.UseVisualStyleBackColor = true;
-            this.ButtonSwitch.Click += new System.EventHandler(this.ButtonSwitch_Click);
+            this.ButtonSwitch.Click += new System.EventHandler(this.ButtonSwitchClick);
             // 
             // ComboBoxTo
             // 
@@ -84,8 +75,7 @@
             this.ComboBoxTo.Location = new System.Drawing.Point(406, 64);
             this.ComboBoxTo.Name = "ComboBoxTo";
             this.ComboBoxTo.Size = new System.Drawing.Size(182, 38);
-            this.ComboBoxTo.TabIndex = 11;
-            this.ComboBoxTo.DropDown += new System.EventHandler(this.ComboBoxTo_DropDown);
+            this.ComboBoxTo.TabIndex = 3;
             // 
             // ComboBoxFrom
             // 
@@ -93,7 +83,7 @@
             this.ComboBoxFrom.Location = new System.Drawing.Point(33, 63);
             this.ComboBoxFrom.Name = "ComboBoxFrom";
             this.ComboBoxFrom.Size = new System.Drawing.Size(224, 38);
-            this.ComboBoxFrom.TabIndex = 10;
+            this.ComboBoxFrom.TabIndex = 1;
             // 
             // TextBoxTime
             // 
@@ -151,7 +141,7 @@
             this.ButtonSearch.TabIndex = 6;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = false;
-            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearchClick);
             // 
             // LabelTime
             // 
@@ -193,17 +183,16 @@
             this.LabelFrom.TabIndex = 0;
             this.LabelFrom.Text = "From";
             // 
-            // tabPage1
+            // TabPageNearby
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.TextBoxSearch);
-            this.tabPage1.Location = new System.Drawing.Point(4, 39);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(816, 889);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.TabPageNearby.Controls.Add(this.button1);
+            this.TabPageNearby.Controls.Add(this.TextBoxSearch);
+            this.TabPageNearby.Location = new System.Drawing.Point(4, 39);
+            this.TabPageNearby.Name = "TabPageNearby";
+            this.TabPageNearby.Size = new System.Drawing.Size(816, 548);
+            this.TabPageNearby.TabIndex = 2;
+            this.TabPageNearby.Text = "Stations Nearby";
+            this.TabPageNearby.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -221,98 +210,110 @@
             this.TextBoxSearch.Size = new System.Drawing.Size(605, 37);
             this.TextBoxSearch.TabIndex = 10;
             // 
-            // TabPageNearby
+            // TabPageTimetable
             // 
-            this.TabPageNearby.Controls.Add(this.ButtonSearchNearby);
-            this.TabPageNearby.Controls.Add(this.textBox1);
-            this.TabPageNearby.Location = new System.Drawing.Point(4, 39);
-            this.TabPageNearby.Name = "TabPageNearby";
-            this.TabPageNearby.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPageNearby.Size = new System.Drawing.Size(816, 553);
-            this.TabPageNearby.TabIndex = 1;
-            this.TabPageNearby.Text = "Stations Nearby";
-            this.TabPageNearby.UseVisualStyleBackColor = true;
+            this.TabPageTimetable.Controls.Add(this.ComboBox2);
+            this.TabPageTimetable.Controls.Add(this.ComboBoxTimetable);
+            this.TabPageTimetable.Controls.Add(this.DataGridTimetable);
+            this.TabPageTimetable.Controls.Add(this.ButtonSearchTimetable);
+            this.TabPageTimetable.Location = new System.Drawing.Point(4, 39);
+            this.TabPageTimetable.Name = "TabPageTimetable";
+            this.TabPageTimetable.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPageTimetable.Size = new System.Drawing.Size(816, 548);
+            this.TabPageTimetable.TabIndex = 1;
+            this.TabPageTimetable.Text = "Timetable";
+            this.TabPageTimetable.UseVisualStyleBackColor = true;
             // 
-            // ButtonSearchNearby
+            // ComboBoxTimetable
             // 
-            this.ButtonSearchNearby.Location = new System.Drawing.Point(639, 41);
-            this.ButtonSearchNearby.Name = "ButtonSearchNearby";
-            this.ButtonSearchNearby.Size = new System.Drawing.Size(140, 37);
-            this.ButtonSearchNearby.TabIndex = 10;
-            this.ButtonSearchNearby.Text = "Search";
-            this.ButtonSearchNearby.UseVisualStyleBackColor = true;
+            this.ComboBoxTimetable.FormattingEnabled = true;
+            this.ComboBoxTimetable.Location = new System.Drawing.Point(28, 40);
+            this.ComboBoxTimetable.Name = "ComboBoxTimetable";
+            this.ComboBoxTimetable.Size = new System.Drawing.Size(605, 38);
+            this.ComboBoxTimetable.TabIndex = 12;
             // 
-            // textBox1
+            // DataGridTimetable
             // 
-            this.textBox1.Location = new System.Drawing.Point(28, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(605, 37);
-            this.textBox1.TabIndex = 9;
+            this.DataGridTimetable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridTimetable.Location = new System.Drawing.Point(28, 107);
+            this.DataGridTimetable.Name = "DataGridTimetable";
+            this.DataGridTimetable.RowHeadersWidth = 62;
+            this.DataGridTimetable.RowTemplate.Height = 33;
+            this.DataGridTimetable.Size = new System.Drawing.Size(751, 372);
+            this.DataGridTimetable.TabIndex = 11;
+            // 
+            // ButtonSearchTimetable
+            // 
+            this.ButtonSearchTimetable.Location = new System.Drawing.Point(639, 41);
+            this.ButtonSearchTimetable.Name = "ButtonSearchTimetable";
+            this.ButtonSearchTimetable.Size = new System.Drawing.Size(140, 37);
+            this.ButtonSearchTimetable.TabIndex = 10;
+            this.ButtonSearchTimetable.Text = "Search";
+            this.ButtonSearchTimetable.UseVisualStyleBackColor = true;
+            this.ButtonSearchTimetable.Click += new System.EventHandler(this.ButtonSearchTimetableClick);
             // 
             // TabControl
             // 
+            this.TabControl.Controls.Add(this.TabPageConnections);
             this.TabControl.Controls.Add(this.TabPageTimetable);
             this.TabControl.Controls.Add(this.TabPageNearby);
-            this.TabControl.Controls.Add(this.tabPage1);
             this.TabControl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TabControl.Location = new System.Drawing.Point(12, 12);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(824, 932);
+            this.TabControl.Size = new System.Drawing.Size(824, 591);
             this.TabControl.TabIndex = 0;
             // 
-            // TabPageTimetable
+            // TabPageConnections
             // 
-            this.TabPageTimetable.Controls.Add(this.ListBoxConnections);
-            this.TabPageTimetable.Controls.Add(this.ButtonSwitch);
-            this.TabPageTimetable.Controls.Add(this.ComboBoxTo);
-            this.TabPageTimetable.Controls.Add(this.ComboBoxFrom);
-            this.TabPageTimetable.Controls.Add(this.TextBoxTime);
-            this.TabPageTimetable.Controls.Add(this.DataGridConnections);
-            this.TabPageTimetable.Controls.Add(this.ButtonShare);
-            this.TabPageTimetable.Controls.Add(this.DateTimePicker);
-            this.TabPageTimetable.Controls.Add(this.ButtonMap);
-            this.TabPageTimetable.Controls.Add(this.ButtonSearch);
-            this.TabPageTimetable.Controls.Add(this.LabelTime);
-            this.TabPageTimetable.Controls.Add(this.LabelDate);
-            this.TabPageTimetable.Controls.Add(this.LabelTo);
-            this.TabPageTimetable.Controls.Add(this.LabelFrom);
-            this.TabPageTimetable.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TabPageTimetable.Location = new System.Drawing.Point(4, 39);
-            this.TabPageTimetable.Name = "TabPageTimetable";
-            this.TabPageTimetable.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPageTimetable.Size = new System.Drawing.Size(816, 889);
-            this.TabPageTimetable.TabIndex = 0;
-            this.TabPageTimetable.Text = "Timetable";
-            this.TabPageTimetable.UseVisualStyleBackColor = true;
+            this.TabPageConnections.Controls.Add(this.ButtonSwitch);
+            this.TabPageConnections.Controls.Add(this.ComboBoxTo);
+            this.TabPageConnections.Controls.Add(this.ComboBoxFrom);
+            this.TabPageConnections.Controls.Add(this.TextBoxTime);
+            this.TabPageConnections.Controls.Add(this.DataGridConnections);
+            this.TabPageConnections.Controls.Add(this.ButtonShare);
+            this.TabPageConnections.Controls.Add(this.DateTimePicker);
+            this.TabPageConnections.Controls.Add(this.ButtonMap);
+            this.TabPageConnections.Controls.Add(this.ButtonSearch);
+            this.TabPageConnections.Controls.Add(this.LabelTime);
+            this.TabPageConnections.Controls.Add(this.LabelDate);
+            this.TabPageConnections.Controls.Add(this.LabelTo);
+            this.TabPageConnections.Controls.Add(this.LabelFrom);
+            this.TabPageConnections.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TabPageConnections.Location = new System.Drawing.Point(4, 39);
+            this.TabPageConnections.Name = "TabPageConnections";
+            this.TabPageConnections.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPageConnections.Size = new System.Drawing.Size(816, 548);
+            this.TabPageConnections.TabIndex = 0;
+            this.TabPageConnections.Text = "Connections";
+            this.TabPageConnections.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // ComboBox2
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 146);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(751, 358);
-            this.dataGridView1.TabIndex = 12;
+            this.ComboBox2.FormattingEnabled = true;
+            this.ComboBox2.Location = new System.Drawing.Point(28, 485);
+            this.ComboBox2.Name = "ComboBox2";
+            this.ComboBox2.Size = new System.Drawing.Size(182, 38);
+            this.ComboBox2.TabIndex = 13;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 956);
+            this.ClientSize = new System.Drawing.Size(846, 617);
             this.Controls.Add(this.TabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Swiss Transport";
             ((System.ComponentModel.ISupportInitialize)(this.DataGridConnections)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.TabPageNearby.ResumeLayout(false);
             this.TabPageNearby.PerformLayout();
-            this.TabControl.ResumeLayout(false);
             this.TabPageTimetable.ResumeLayout(false);
-            this.TabPageTimetable.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridTimetable)).EndInit();
+            this.TabControl.ResumeLayout(false);
+            this.TabPageConnections.ResumeLayout(false);
+            this.TabPageConnections.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -331,15 +332,15 @@
         private ComboBox ComboBoxFrom;
         private ComboBox ComboBoxTo;
         private Button ButtonSwitch;
-        private ListBox ListBoxConnections;
-        private TabPage tabPage1;
+        private TabPage TabPageNearby;
         private Button button1;
         private TextBox TextBoxSearch;
-        private TabPage TabPageNearby;
-        private Button ButtonSearchNearby;
-        private TextBox textBox1;
-        private TabControl TabControl;
         private TabPage TabPageTimetable;
-        private DataGridView dataGridView1;
+        private Button ButtonSearchTimetable;
+        private TabControl TabControl;
+        private TabPage TabPageConnections;
+        private DataGridView DataGridTimetable;
+        private ComboBox ComboBoxTimetable;
+        private ComboBox ComboBox2;
     }
 }
