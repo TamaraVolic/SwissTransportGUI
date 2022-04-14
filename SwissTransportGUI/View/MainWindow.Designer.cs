@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.ButtonSwitch = new System.Windows.Forms.Button();
             this.ComboBoxTo = new System.Windows.Forms.ComboBox();
             this.ComboBoxFrom = new System.Windows.Forms.ComboBox();
-            this.TextBoxTime = new System.Windows.Forms.TextBox();
             this.DataGridConnections = new System.Windows.Forms.DataGridView();
             this.ButtonShare = new System.Windows.Forms.Button();
             this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -46,19 +46,23 @@
             this.ButtonDepartureBoard = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.TabPageConnections = new System.Windows.Forms.TabPage();
+            this.NumericUpDownMinutes = new System.Windows.Forms.NumericUpDown();
+            this.NumericUpDownHour = new System.Windows.Forms.NumericUpDown();
             this.TabPageNearby = new System.Windows.Forms.TabPage();
             this.GMapControl = new GMap.NET.WindowsForms.GMapControl();
             this.ButtonSearchMap = new System.Windows.Forms.Button();
-            this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.TabPageSearchStation = new System.Windows.Forms.TabPage();
             this.DataGridSearchStation = new System.Windows.Forms.DataGridView();
             this.ButtonSearchStation = new System.Windows.Forms.Button();
             this.TextBoxSearchStation = new System.Windows.Forms.TextBox();
+            this.ButtonGMaps = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridConnections)).BeginInit();
             this.TabPageTimetable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridDepartureBoard)).BeginInit();
             this.TabControl.SuspendLayout();
             this.TabPageConnections.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownMinutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownHour)).BeginInit();
             this.TabPageNearby.SuspendLayout();
             this.TabPageSearchStation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSearchStation)).BeginInit();
@@ -66,80 +70,67 @@
             // 
             // ButtonSwitch
             // 
-            this.ButtonSwitch.Location = new System.Drawing.Point(195, 38);
-            this.ButtonSwitch.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonSwitch.BackColor = System.Drawing.Color.LightGray;
+            this.ButtonSwitch.Location = new System.Drawing.Point(279, 63);
             this.ButtonSwitch.Name = "ButtonSwitch";
-            this.ButtonSwitch.Size = new System.Drawing.Size(71, 27);
+            this.ButtonSwitch.Size = new System.Drawing.Size(101, 45);
             this.ButtonSwitch.TabIndex = 2;
             this.ButtonSwitch.Text = "Switch";
-            this.ButtonSwitch.UseVisualStyleBackColor = true;
+            this.ButtonSwitch.UseVisualStyleBackColor = false;
             this.ButtonSwitch.Click += new System.EventHandler(this.ButtonSwitchClick);
             // 
             // ComboBoxTo
             // 
             this.ComboBoxTo.FormattingEnabled = true;
-            this.ComboBoxTo.Location = new System.Drawing.Point(284, 38);
-            this.ComboBoxTo.Margin = new System.Windows.Forms.Padding(2);
+            this.ComboBoxTo.Location = new System.Drawing.Point(406, 63);
             this.ComboBoxTo.Name = "ComboBoxTo";
-            this.ComboBoxTo.Size = new System.Drawing.Size(129, 28);
+            this.ComboBoxTo.Size = new System.Drawing.Size(183, 38);
             this.ComboBoxTo.TabIndex = 3;
             // 
             // ComboBoxFrom
             // 
             this.ComboBoxFrom.FormattingEnabled = true;
-            this.ComboBoxFrom.Location = new System.Drawing.Point(23, 38);
-            this.ComboBoxFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.ComboBoxFrom.Location = new System.Drawing.Point(33, 63);
             this.ComboBoxFrom.Name = "ComboBoxFrom";
-            this.ComboBoxFrom.Size = new System.Drawing.Size(158, 28);
+            this.ComboBoxFrom.Size = new System.Drawing.Size(224, 38);
             this.ComboBoxFrom.TabIndex = 1;
-            // 
-            // TextBoxTime
-            // 
-            this.TextBoxTime.Location = new System.Drawing.Point(195, 87);
-            this.TextBoxTime.Margin = new System.Windows.Forms.Padding(2);
-            this.TextBoxTime.Name = "TextBoxTime";
-            this.TextBoxTime.Size = new System.Drawing.Size(56, 27);
-            this.TextBoxTime.TabIndex = 9;
             // 
             // DataGridConnections
             // 
             this.DataGridConnections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridConnections.Location = new System.Drawing.Point(23, 134);
-            this.DataGridConnections.Margin = new System.Windows.Forms.Padding(2);
+            this.DataGridConnections.Location = new System.Drawing.Point(33, 223);
             this.DataGridConnections.Name = "DataGridConnections";
             this.DataGridConnections.RowHeadersWidth = 62;
             this.DataGridConnections.RowTemplate.Height = 33;
-            this.DataGridConnections.Size = new System.Drawing.Size(527, 170);
+            this.DataGridConnections.Size = new System.Drawing.Size(753, 283);
             this.DataGridConnections.TabIndex = 8;
             // 
             // ButtonShare
             // 
             this.ButtonShare.BackColor = System.Drawing.Color.LightGray;
             this.ButtonShare.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ButtonShare.Location = new System.Drawing.Point(494, 80);
-            this.ButtonShare.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonShare.Location = new System.Drawing.Point(616, 63);
             this.ButtonShare.Name = "ButtonShare";
-            this.ButtonShare.Size = new System.Drawing.Size(57, 32);
+            this.ButtonShare.Size = new System.Drawing.Size(170, 127);
             this.ButtonShare.TabIndex = 7;
             this.ButtonShare.Text = "Share";
             this.ButtonShare.UseVisualStyleBackColor = false;
+            this.ButtonShare.Click += new System.EventHandler(this.ButtonShareClick);
             // 
             // DateTimePicker
             // 
-            this.DateTimePicker.Location = new System.Drawing.Point(23, 89);
-            this.DateTimePicker.Margin = new System.Windows.Forms.Padding(2);
+            this.DateTimePicker.Location = new System.Drawing.Point(33, 148);
             this.DateTimePicker.Name = "DateTimePicker";
-            this.DateTimePicker.Size = new System.Drawing.Size(140, 27);
+            this.DateTimePicker.Size = new System.Drawing.Size(198, 37);
             this.DateTimePicker.TabIndex = 3;
             // 
             // ButtonSearch
             // 
             this.ButtonSearch.BackColor = System.Drawing.Color.LightGray;
             this.ButtonSearch.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ButtonSearch.Location = new System.Drawing.Point(353, 80);
-            this.ButtonSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonSearch.Location = new System.Drawing.Point(406, 132);
             this.ButtonSearch.Name = "ButtonSearch";
-            this.ButtonSearch.Size = new System.Drawing.Size(136, 33);
+            this.ButtonSearch.Size = new System.Drawing.Size(184, 55);
             this.ButtonSearch.TabIndex = 6;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = false;
@@ -149,10 +140,9 @@
             // 
             this.LabelTime.AutoSize = true;
             this.LabelTime.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelTime.Location = new System.Drawing.Point(195, 67);
-            this.LabelTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelTime.Location = new System.Drawing.Point(265, 113);
             this.LabelTime.Name = "LabelTime";
-            this.LabelTime.Size = new System.Drawing.Size(42, 20);
+            this.LabelTime.Size = new System.Drawing.Size(61, 30);
             this.LabelTime.TabIndex = 5;
             this.LabelTime.Text = "Time";
             // 
@@ -160,10 +150,9 @@
             // 
             this.LabelDate.AutoSize = true;
             this.LabelDate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelDate.Location = new System.Drawing.Point(23, 68);
-            this.LabelDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelDate.Location = new System.Drawing.Point(33, 113);
             this.LabelDate.Name = "LabelDate";
-            this.LabelDate.Size = new System.Drawing.Size(41, 20);
+            this.LabelDate.Size = new System.Drawing.Size(58, 30);
             this.LabelDate.TabIndex = 4;
             this.LabelDate.Text = "Date";
             // 
@@ -171,10 +160,9 @@
             // 
             this.LabelTo.AutoSize = true;
             this.LabelTo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelTo.Location = new System.Drawing.Point(284, 18);
-            this.LabelTo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelTo.Location = new System.Drawing.Point(406, 30);
             this.LabelTo.Name = "LabelTo";
-            this.LabelTo.Size = new System.Drawing.Size(25, 20);
+            this.LabelTo.Size = new System.Drawing.Size(36, 30);
             this.LabelTo.TabIndex = 1;
             this.LabelTo.Text = "To";
             // 
@@ -182,10 +170,9 @@
             // 
             this.LabelFrom.AutoSize = true;
             this.LabelFrom.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelFrom.Location = new System.Drawing.Point(23, 18);
-            this.LabelFrom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelFrom.Location = new System.Drawing.Point(33, 30);
             this.LabelFrom.Name = "LabelFrom";
-            this.LabelFrom.Size = new System.Drawing.Size(43, 20);
+            this.LabelFrom.Size = new System.Drawing.Size(64, 30);
             this.LabelFrom.TabIndex = 0;
             this.LabelFrom.Text = "From";
             // 
@@ -194,39 +181,37 @@
             this.TabPageTimetable.Controls.Add(this.TextBoxDepartureBoard);
             this.TabPageTimetable.Controls.Add(this.DataGridDepartureBoard);
             this.TabPageTimetable.Controls.Add(this.ButtonDepartureBoard);
-            this.TabPageTimetable.Location = new System.Drawing.Point(4, 29);
-            this.TabPageTimetable.Margin = new System.Windows.Forms.Padding(2);
+            this.TabPageTimetable.Location = new System.Drawing.Point(4, 39);
             this.TabPageTimetable.Name = "TabPageTimetable";
-            this.TabPageTimetable.Padding = new System.Windows.Forms.Padding(2);
-            this.TabPageTimetable.Size = new System.Drawing.Size(569, 322);
+            this.TabPageTimetable.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPageTimetable.Size = new System.Drawing.Size(816, 549);
             this.TabPageTimetable.TabIndex = 1;
             this.TabPageTimetable.Text = "Timetable";
             this.TabPageTimetable.UseVisualStyleBackColor = true;
             // 
             // TextBoxDepartureBoard
             // 
-            this.TextBoxDepartureBoard.Location = new System.Drawing.Point(20, 25);
+            this.TextBoxDepartureBoard.Location = new System.Drawing.Point(29, 42);
+            this.TextBoxDepartureBoard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextBoxDepartureBoard.Name = "TextBoxDepartureBoard";
-            this.TextBoxDepartureBoard.Size = new System.Drawing.Size(422, 27);
+            this.TextBoxDepartureBoard.Size = new System.Drawing.Size(601, 37);
             this.TextBoxDepartureBoard.TabIndex = 12;
             // 
             // DataGridDepartureBoard
             // 
             this.DataGridDepartureBoard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridDepartureBoard.Location = new System.Drawing.Point(20, 64);
-            this.DataGridDepartureBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.DataGridDepartureBoard.Location = new System.Drawing.Point(29, 107);
             this.DataGridDepartureBoard.Name = "DataGridDepartureBoard";
             this.DataGridDepartureBoard.RowHeadersWidth = 62;
             this.DataGridDepartureBoard.RowTemplate.Height = 33;
-            this.DataGridDepartureBoard.Size = new System.Drawing.Size(526, 223);
+            this.DataGridDepartureBoard.Size = new System.Drawing.Size(751, 372);
             this.DataGridDepartureBoard.TabIndex = 11;
             // 
             // ButtonDepartureBoard
             // 
-            this.ButtonDepartureBoard.Location = new System.Drawing.Point(447, 25);
-            this.ButtonDepartureBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonDepartureBoard.Location = new System.Drawing.Point(639, 42);
             this.ButtonDepartureBoard.Name = "ButtonDepartureBoard";
-            this.ButtonDepartureBoard.Size = new System.Drawing.Size(98, 27);
+            this.ButtonDepartureBoard.Size = new System.Drawing.Size(140, 45);
             this.ButtonDepartureBoard.TabIndex = 10;
             this.ButtonDepartureBoard.Text = "Search";
             this.ButtonDepartureBoard.UseVisualStyleBackColor = true;
@@ -239,19 +224,19 @@
             this.TabControl.Controls.Add(this.TabPageNearby);
             this.TabControl.Controls.Add(this.TabPageSearchStation);
             this.TabControl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TabControl.Location = new System.Drawing.Point(8, 7);
-            this.TabControl.Margin = new System.Windows.Forms.Padding(2);
+            this.TabControl.Location = new System.Drawing.Point(11, 12);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(577, 355);
+            this.TabControl.Size = new System.Drawing.Size(824, 592);
             this.TabControl.TabIndex = 0;
             // 
             // TabPageConnections
             // 
+            this.TabPageConnections.Controls.Add(this.NumericUpDownMinutes);
+            this.TabPageConnections.Controls.Add(this.NumericUpDownHour);
             this.TabPageConnections.Controls.Add(this.ButtonSwitch);
             this.TabPageConnections.Controls.Add(this.ComboBoxTo);
             this.TabPageConnections.Controls.Add(this.ComboBoxFrom);
-            this.TabPageConnections.Controls.Add(this.TextBoxTime);
             this.TabPageConnections.Controls.Add(this.DataGridConnections);
             this.TabPageConnections.Controls.Add(this.ButtonShare);
             this.TabPageConnections.Controls.Add(this.DateTimePicker);
@@ -261,26 +246,48 @@
             this.TabPageConnections.Controls.Add(this.LabelTo);
             this.TabPageConnections.Controls.Add(this.LabelFrom);
             this.TabPageConnections.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TabPageConnections.Location = new System.Drawing.Point(4, 29);
-            this.TabPageConnections.Margin = new System.Windows.Forms.Padding(2);
+            this.TabPageConnections.Location = new System.Drawing.Point(4, 39);
             this.TabPageConnections.Name = "TabPageConnections";
-            this.TabPageConnections.Padding = new System.Windows.Forms.Padding(2);
-            this.TabPageConnections.Size = new System.Drawing.Size(569, 322);
+            this.TabPageConnections.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPageConnections.Size = new System.Drawing.Size(816, 549);
             this.TabPageConnections.TabIndex = 0;
             this.TabPageConnections.Text = "Connections";
             this.TabPageConnections.UseVisualStyleBackColor = true;
             // 
+            // NumericUpDownMinutes
+            // 
+            this.NumericUpDownMinutes.Location = new System.Drawing.Point(332, 145);
+            this.NumericUpDownMinutes.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.NumericUpDownMinutes.Name = "NumericUpDownMinutes";
+            this.NumericUpDownMinutes.Size = new System.Drawing.Size(61, 37);
+            this.NumericUpDownMinutes.TabIndex = 10;
+            // 
+            // NumericUpDownHour
+            // 
+            this.NumericUpDownHour.Location = new System.Drawing.Point(265, 145);
+            this.NumericUpDownHour.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.NumericUpDownHour.Name = "NumericUpDownHour";
+            this.NumericUpDownHour.Size = new System.Drawing.Size(61, 37);
+            this.NumericUpDownHour.TabIndex = 9;
+            // 
             // TabPageNearby
             // 
+            this.TabPageNearby.Controls.Add(this.ButtonGMaps);
             this.TabPageNearby.Controls.Add(this.GMapControl);
             this.TabPageNearby.Controls.Add(this.ButtonSearchMap);
-            this.TabPageNearby.Controls.Add(this.TextBoxSearch);
-            this.TabPageNearby.Location = new System.Drawing.Point(4, 29);
-            this.TabPageNearby.Margin = new System.Windows.Forms.Padding(2);
+            this.TabPageNearby.Location = new System.Drawing.Point(4, 39);
             this.TabPageNearby.Name = "TabPageNearby";
-            this.TabPageNearby.Size = new System.Drawing.Size(569, 322);
+            this.TabPageNearby.Size = new System.Drawing.Size(816, 549);
             this.TabPageNearby.TabIndex = 2;
-            this.TabPageNearby.Text = "Stations Nearby Map";
+            this.TabPageNearby.Text = "Map";
             this.TabPageNearby.UseVisualStyleBackColor = true;
             // 
             // GMapControl
@@ -291,7 +298,8 @@
             this.GMapControl.GrayScaleMode = false;
             this.GMapControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.GMapControl.LevelsKeepInMemory = 5;
-            this.GMapControl.Location = new System.Drawing.Point(20, 78);
+            this.GMapControl.Location = new System.Drawing.Point(29, 130);
+            this.GMapControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GMapControl.MarkersEnabled = true;
             this.GMapControl.MaxZoom = 2;
             this.GMapControl.MinZoom = 2;
@@ -305,77 +313,81 @@
             this.GMapControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMapControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMapControl.ShowTileGridLines = false;
-            this.GMapControl.Size = new System.Drawing.Size(525, 212);
+            this.GMapControl.Size = new System.Drawing.Size(750, 353);
             this.GMapControl.TabIndex = 12;
             this.GMapControl.Zoom = 0D;
             // 
             // ButtonSearchMap
             // 
-            this.ButtonSearchMap.Location = new System.Drawing.Point(447, 25);
-            this.ButtonSearchMap.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonSearchMap.Location = new System.Drawing.Point(29, 38);
             this.ButtonSearchMap.Name = "ButtonSearchMap";
-            this.ButtonSearchMap.Size = new System.Drawing.Size(98, 27);
+            this.ButtonSearchMap.Size = new System.Drawing.Size(463, 45);
             this.ButtonSearchMap.TabIndex = 11;
-            this.ButtonSearchMap.Text = "Search";
+            this.ButtonSearchMap.Text = "GMAP";
             this.ButtonSearchMap.UseVisualStyleBackColor = true;
             this.ButtonSearchMap.Click += new System.EventHandler(this.ButtonSearchMapClick);
-            // 
-            // TextBoxSearch
-            // 
-            this.TextBoxSearch.Location = new System.Drawing.Point(20, 25);
-            this.TextBoxSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.TextBoxSearch.Name = "TextBoxSearch";
-            this.TextBoxSearch.Size = new System.Drawing.Size(425, 27);
-            this.TextBoxSearch.TabIndex = 10;
             // 
             // TabPageSearchStation
             // 
             this.TabPageSearchStation.Controls.Add(this.DataGridSearchStation);
             this.TabPageSearchStation.Controls.Add(this.ButtonSearchStation);
             this.TabPageSearchStation.Controls.Add(this.TextBoxSearchStation);
-            this.TabPageSearchStation.Location = new System.Drawing.Point(4, 29);
+            this.TabPageSearchStation.Location = new System.Drawing.Point(4, 39);
+            this.TabPageSearchStation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TabPageSearchStation.Name = "TabPageSearchStation";
-            this.TabPageSearchStation.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPageSearchStation.Size = new System.Drawing.Size(569, 322);
+            this.TabPageSearchStation.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TabPageSearchStation.Size = new System.Drawing.Size(816, 549);
             this.TabPageSearchStation.TabIndex = 3;
-            this.TabPageSearchStation.Text = "Search Nearby Station";
+            this.TabPageSearchStation.Text = "Search Station";
             this.TabPageSearchStation.UseVisualStyleBackColor = true;
             // 
             // DataGridSearchStation
             // 
             this.DataGridSearchStation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridSearchStation.Location = new System.Drawing.Point(20, 64);
+            this.DataGridSearchStation.Location = new System.Drawing.Point(29, 107);
+            this.DataGridSearchStation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DataGridSearchStation.Name = "DataGridSearchStation";
+            this.DataGridSearchStation.RowHeadersWidth = 62;
             this.DataGridSearchStation.RowTemplate.Height = 25;
-            this.DataGridSearchStation.Size = new System.Drawing.Size(526, 223);
+            this.DataGridSearchStation.Size = new System.Drawing.Size(751, 372);
             this.DataGridSearchStation.TabIndex = 2;
             // 
             // ButtonSearchStation
             // 
-            this.ButtonSearchStation.Location = new System.Drawing.Point(447, 25);
-            this.ButtonSearchStation.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonSearchStation.Location = new System.Drawing.Point(639, 42);
             this.ButtonSearchStation.Name = "ButtonSearchStation";
-            this.ButtonSearchStation.Size = new System.Drawing.Size(98, 27);
+            this.ButtonSearchStation.Size = new System.Drawing.Size(140, 45);
             this.ButtonSearchStation.TabIndex = 1;
             this.ButtonSearchStation.Text = "Search";
             this.ButtonSearchStation.UseVisualStyleBackColor = true;
-            this.ButtonSearchStation.Click += new System.EventHandler(this.ButtonSearchStation_Click);
+            this.ButtonSearchStation.Click += new System.EventHandler(this.ButtonSearchStationClick);
             // 
             // TextBoxSearchStation
             // 
-            this.TextBoxSearchStation.Location = new System.Drawing.Point(20, 25);
+            this.TextBoxSearchStation.Location = new System.Drawing.Point(29, 42);
+            this.TextBoxSearchStation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextBoxSearchStation.Name = "TextBoxSearchStation";
-            this.TextBoxSearchStation.Size = new System.Drawing.Size(425, 27);
+            this.TextBoxSearchStation.Size = new System.Drawing.Size(605, 37);
             this.TextBoxSearchStation.TabIndex = 0;
+            // 
+            // ButtonGMaps
+            // 
+            this.ButtonGMaps.Location = new System.Drawing.Point(498, 38);
+            this.ButtonGMaps.Name = "ButtonGMaps";
+            this.ButtonGMaps.Size = new System.Drawing.Size(281, 45);
+            this.ButtonGMaps.TabIndex = 13;
+            this.ButtonGMaps.Text = "Search on Google Maps";
+            this.ButtonGMaps.UseVisualStyleBackColor = true;
+            this.ButtonGMaps.Click += new System.EventHandler(this.ButtonGMaps_Click);
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 370);
+            this.ClientSize = new System.Drawing.Size(846, 617);
             this.Controls.Add(this.TabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Swiss Transport";
@@ -386,8 +398,9 @@
             this.TabControl.ResumeLayout(false);
             this.TabPageConnections.ResumeLayout(false);
             this.TabPageConnections.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownMinutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownHour)).EndInit();
             this.TabPageNearby.ResumeLayout(false);
-            this.TabPageNearby.PerformLayout();
             this.TabPageSearchStation.ResumeLayout(false);
             this.TabPageSearchStation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSearchStation)).EndInit();
@@ -404,19 +417,14 @@
         private Label LabelTo;
         private Label LabelFrom;
         private DataGridView DataGridConnections;
-        private TextBox TextBoxTime;
         private ComboBox ComboBoxFrom;
         private ComboBox ComboBoxTo;
         private Button ButtonSwitch;
         private TabPage TabPageTimetable;
-        private Button ButtonSearchTimetable;
         private TabControl TabControl;
         private TabPage TabPageConnections;
-        private DataGridView DataGridTimetable;
         private TabPage TabPageNearby;
         private Button ButtonSearchMap;
-        private TextBox TextBoxSearch;
-        private GMap.NET.WindowsForms.GMapControl GMapControl;
         private TextBox TextBoxDepartureBoard;
         private Button ButtonDepartureBoard;
         private DataGridView DataGridDepartureBoard;
@@ -424,5 +432,9 @@
         private TextBox TextBoxSearchStation;
         private Button ButtonSearchStation;
         private DataGridView DataGridSearchStation;
+        private GMap.NET.WindowsForms.GMapControl GMapControl;
+        private NumericUpDown NumericUpDownHour;
+        private NumericUpDown NumericUpDownMinutes;
+        private Button ButtonGMaps;
     }
 }

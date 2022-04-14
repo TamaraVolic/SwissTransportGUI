@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SwissTransportGUI.ViewModels;
 using GMap.NET.MapProviders;
+using System.Diagnostics;
 
 namespace SwissTransportGUI
 {
@@ -23,8 +24,6 @@ namespace SwissTransportGUI
         {
             InitializeComponent();
         }
-
-
 
         //Funktion um mit einem Klick auf den "Verbindungen suchen" Button, die 4 nächsten Verbindungen angezeigt zu bekommen.
         private void ButtonSearchClick(object sender, EventArgs e)
@@ -38,57 +37,65 @@ namespace SwissTransportGUI
                     DataGridConnections.Rows.Clear();
                     SwissTransport.Core.ITransport transport = new SwissTransport.Core.Transport();
                     SwissTransport.Models.Connections connections = new SwissTransport.Models.Connections();
-                    connections = transport.GetConnections(ComboBoxFrom.Text, ComboBoxTo.Text);
 
-                    BindingList<ConnectionViewModel> connectionViewModels = new BindingList<ConnectionViewModel>();
-
-
-                    foreach (Connection connection in connections.ConnectionList)
+                    if (ComboBoxFrom.Text != "" && ComboBoxTo.Text != "" || ComboBoxTo.Text != "" && ComboBoxFrom.Text != "")
                     {
-                        ConnectionViewModel vm = new ConnectionViewModel();
-                        vm.Abfahrt = connection.From.Departure.ToString();
-                        vm.Von = connection.From.Station.Name;
-                        vm.Ankunft = connection.To.Arrival.ToString();
-                        vm.Nach = connection.To.Station.Name;
-                        vm.Kante = connection.From.Platform;
+                        int hr = Convert.ToInt32(NumericUpDownHour.Value);
+                        int min = Convert.ToInt32(NumericUpDownMinutes.Value);
+                        DateTime dt = DateTime.Today.AddHours(hr).AddMinutes(min);
+                        MessageBox.Show(dt.ToString("g"));
 
-                        connectionViewModels.Add(vm);
+                        connections = transport.GetConnections(ComboBoxFrom.Text, ComboBoxTo.Text);
 
+                        BindingList<ConnectionViewModel> connectionViewModels = new BindingList<ConnectionViewModel>();
+
+                        foreach (Connection connection in connections.ConnectionList)
+                        {
+                            ConnectionViewModel vm = new ConnectionViewModel();
+                            vm.Abfahrt = Convert.ToDateTime(connection.From.Departure).ToLongTimeString();
+                            vm.Von = connection.From.Station.Name;
+                            vm.Ankunft = Convert.ToDateTime(connection.To.Arrival).ToLongTimeString();
+                            vm.Nach = connection.To.Station.Name;
+                            vm.Kante = connection.From.Platform;
+
+                            connectionViewModels.Add(vm);
+                        }
+
+                        DataGridConnections.DataSource = connectionViewModels;
+
+                        DataGridConnections.Columns["Kante"].Width = 70;
+                        DataGridConnections.Columns["Ankunft"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                        
                     }
-
-
-                    DataGridConnections.DataSource = connectionViewModels;
-
-                    DataGridConnections.Columns["Kante"].Width = 50;
-                    DataGridConnections.Columns["Ankunft"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
                 }
                 catch (System.ArgumentNullException)
                 {
-                    string fehler = "Bitte füllen Sie das erwünschte Start- und Endziel ein";
-                    MessageBox.Show(fehler);
+                    string error = "Bitte füllen Sie das erwünschte Start- und Endziel ein";
+                    MessageBox.Show(error);
                 }
+
+            }
+            else
+            {
+                string error = "Bitte füllen Sie das erwünschte Start- und Endziel ein";
+                MessageBox.Show(error);
             }
         }
-        
 
-
-            //Funktion um Start- und Endstation zu tauschen
-            private void ButtonSwitchClick(object sender, EventArgs e)
+        //Funktion um Start- und Endstation zu tauschen
+        private void ButtonSwitchClick(object sender, EventArgs e)
         {
             string tempStation = ComboBoxFrom.Text;
             ComboBoxFrom.Text = ComboBoxTo.Text;
             ComboBoxTo.Text = tempStation;
-        }
-        void FormLoad(object sender, EventArgs e)
-        {
-            TextBoxTime.Text = Convert.ToString(DateTime.Now.Hour) + ":" + Convert.ToString(DateTime.Now.Minute);
         }
         public void TextBoxTimeTextChanged(object sender, EventArgs e)
         {
 
         }
 
+        //Map
         private void ButtonSearchMapClick(object sender, EventArgs e)
         {
             GMapControl.MapProvider = GMapProviders.GoogleMap;
@@ -96,10 +103,10 @@ namespace SwissTransportGUI
 
         private void ButtonDepartureBoardClick(object sender, EventArgs e)
         {
-            searchStationBoard(TextBoxDepartureBoard.Text);
+            SearchStationBoard(TextBoxDepartureBoard.Text);
         }
 
-        public void searchStationBoard(string station)
+        public void SearchStationBoard(string station)
         {
             List<StationBoard> boards = transport.GetStationBoard(station, "").Entries;
             DataGridDepartureBoard.DataSource = null;
@@ -117,21 +124,40 @@ namespace SwissTransportGUI
             DataGridDepartureBoard.Columns["Abfahrtszeit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void ButtonSearchStation_Click(object sender, EventArgs e)
+        private void ButtonSearchStationClick(object sender, EventArgs e)
         {
-            searchStation(TextBoxSearchStation.Text);
+            SearchStation(TextBoxSearchStation.Text);
         }
-        public void searchStation(string query)
+        public void SearchStation(string query)
         {
             List<Station> stations = transport.GetStations(query).StationList;
 
             DataGridSearchStation.DataSource = stations;
 
+            DataGridSearchStation.Columns["id"].Visible = false;
             DataGridSearchStation.Columns["Score"].Visible = false;
             DataGridSearchStation.Columns["Coordinate"].Visible = false;
             DataGridSearchStation.Columns["Distance"].Visible = false;
 
             DataGridSearchStation.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+        }
+
+        private void ButtonShareClick(object sender, EventArgs e)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo();
+            processStartInfo.FileName = "https://www.gmx.ch/";
+            processStartInfo.UseShellExecute = true;
+            Process.Start(processStartInfo);
+
+        }
+
+        private void ButtonGMaps_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo();
+            processStartInfo.FileName = "https://www.google.com/maps/@47.0397687,8.3104494,15z";
+            processStartInfo.UseShellExecute = true;
+            Process.Start(processStartInfo);
         }
     }
 }

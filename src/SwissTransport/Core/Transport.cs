@@ -6,7 +6,7 @@
     using Newtonsoft.Json;
     using SwissTransport.Models;
 
-    public class Transport : IDisposable
+    public class Transport : ITransport, IDisposable
     {
         private const string WebApiHost = "https://transport.opendata.ch/v1/";
 
